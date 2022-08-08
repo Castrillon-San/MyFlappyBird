@@ -5,7 +5,6 @@ using UnityEngine.Networking;
 
 public class HttpManager : MonoBehaviour
 {
-
     [SerializeField]
     private string URL;
     // Start is called before the first frame update
@@ -36,7 +35,9 @@ public class HttpManager : MonoBehaviour
 
             foreach (ScoreData score in resData.scores)
             {
-                Debug.Log(score.userId +" | "+score.value);
+                //Debug.Log(score.userId +" | "+score.value);
+                LeaderboardManager.Instance.WriteScores(score.user_name, score.score);
+                Debug.Log("entre");
             }
         }
         else
@@ -51,8 +52,8 @@ public class HttpManager : MonoBehaviour
 [System.Serializable]
 public class ScoreData
 {
-    public int userId;
-    public int value;
+    public string user_name;
+    public int score;
 
 }
 
